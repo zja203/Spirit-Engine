@@ -18,13 +18,15 @@ project "TestApp"
 
 	includedirs {
 		"include",
-		"%{wks.location}/include",
 		"%{wks.location}",
-		"%{wks.location}/vendor/include"
+		"%{wks.location}/vendor/include",
+		"%{wks.location}/include"
 	}
 
 	filter "system:linux"
 		systemversion "latest"
+
+		links { "GLEW", "glfw" }
 
 	filter { "system:windows", "configurations:Debug" }
 		buildoptions "/MDd"

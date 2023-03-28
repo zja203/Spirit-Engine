@@ -11,7 +11,8 @@ namespace Spirit {
 	// bus and process them during the "event" part of the update stage.
 
 	enum class EventType {
-		None = 0
+		None = 0,
+		WindowClose, WindowResize, WindowFocus, WindowLostFocus, WindowMoved
 	};
 
 	enum EventCategory {

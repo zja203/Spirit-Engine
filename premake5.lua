@@ -33,18 +33,36 @@ project "SpiritEngine"
 
 	includedirs {
 		"include",
-		"vendor/include"
+		"vendor/include",
+		"platform"
 	}
 
 	filter "system:windows"
 		systemversion "10.0.19041.0"
 
+		files {
+			"platform/Spirit/platform/windows/**"
+		}
+
 		defines {
+			"_GLFW_WIN32",
 			"_CRT_SECURE_NO_WARNINGS"
+		}
+
+		links {
+			"opengl32.lib"
 		}
 
 	filter "system:linux"
 		systemversion "latest"
+
+		files {
+			"platform/Spirit/platform/linux/**"
+		}
+
+		defines {
+			"_GLFW_X11"
+		}
 
 	filter { "system:windows", "configurations:Debug" }
 		buildoptions "/MDd"

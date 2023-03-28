@@ -2,7 +2,9 @@
 
 #include "Spirit/core/base.hpp"
 #include "Spirit/layer_stack.hpp"
+#include "Spirit/events/app_event.hpp"
 #include "Spirit/log.hpp"
+#include "Spirit/window.hpp"
 
 namespace Spirit {
 	struct ApplicationCommandLineArgs {
@@ -29,6 +31,7 @@ namespace Spirit {
 			void Run();
 
 			void OnEvent(Event& e);
+			bool OnWindowResize(WindowResizeEvent& e);
 			void pushLayer(Layer *layer);
 			void pushOverlay(Layer *layer);
 
@@ -38,7 +41,10 @@ namespace Spirit {
 		private:
 			AppSpec m_Specification;
 			static Application* s_Instance;
+			bool OnWindowClose(WindowCloseEvent& e);
+			std::unique_ptr<Window> m_Window;
 			bool m_Running = true;
+			bool m_Minimized = false;
 			LayerStack m_LayerStack;
 	};
 
