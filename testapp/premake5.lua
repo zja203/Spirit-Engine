@@ -57,3 +57,7 @@ project "TestApp"
 		optimize "on"
 		symbols "off"
 		defines "SPRT_DISTRIBUTION"
+
+		flags {
+			"LinkTimeOptimization"
+		}
