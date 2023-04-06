@@ -26,7 +26,7 @@ project "TestApp"
 	filter "system:linux"
 		systemversion "latest"
 
-		links { "GLEW", "glfw" }
+		links { "GLEW", "glfw", "GL" }
 
 	filter { "system:windows", "configurations:Debug" }
 		buildoptions "/MDd"
