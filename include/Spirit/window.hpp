@@ -30,6 +30,8 @@ namespace Spirit {
 		// Window attributes
 		virtual void setEventCallback(const EventCallbackFn& callback) = 0;
 
+		virtual void* getNativeWindow() const = 0;
+
 		static Window* Create(const WindowProps& props = WindowProps());
 	};
 }

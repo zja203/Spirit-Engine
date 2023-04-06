@@ -35,6 +35,8 @@ namespace Spirit {
 			void pushLayer(Layer *layer);
 			void pushOverlay(Layer *layer);
 
+			Window& getWindow() { return *m_Window; }
+
 			static Application& Get() { return *s_Instance; }
 
 			const AppSpec& getSpecification() const { return m_Specification; }

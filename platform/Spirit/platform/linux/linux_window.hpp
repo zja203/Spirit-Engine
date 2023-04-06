@@ -16,6 +16,8 @@ namespace Spirit {
 
 		// Window attributes
 		inline void setEventCallback(const EventCallbackFn& callback) override { m_Data.EventCallback = callback; }
+
+		virtual void* getNativeWindow() const { return m_Window; }
 	private:
 		virtual void Init(const WindowProps& props);
 		virtual void Shutdown();
