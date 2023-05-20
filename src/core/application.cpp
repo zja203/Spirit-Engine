@@ -9,9 +9,13 @@ namespace Spirit {
 	Application* Application::s_Instance = nullptr;
 
 	#define BIND_EVENT_FN(x) std::bind(&Application::x, this, std::placeholders::_1)
-	Application::Application() {
-		m_Window = std::unique_ptr<Window>(Window::Create());
-		m_Window->setEventCallback(BIND_EVENT_FN(OnEvent));
+	Application::Application(bool makeWindow) {
+		if (makeWindow) {
+			m_Window = std::unique_ptr<Window>(Window::Create());
+			m_Window->setEventCallback(BIND_EVENT_FN(OnEvent));
+		} else {
+			m_hasWindow = false;
+		}
 		m_Specification.WorkingDir = std::filesystem::current_path();
 		SPRT_CORE_INFO("Current Directory: {0}", m_Specification.WorkingDir);
 	}
@@ -54,7 +58,9 @@ namespace Spirit {
 		while (m_Running) {
 			for (Layer *layer : m_LayerStack)
 				layer->OnUpdate();
-			m_Window->OnUpdate();
+			if (m_hasWindow) { // TODO: Is there a way to avoid checking this variable every cycle?
+				m_Window->OnUpdate();
+			}
 		}
 	}
 

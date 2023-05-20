@@ -21,7 +21,7 @@ class TestLayer : public Spirit::Layer {
 
 class Sandbox : public Spirit::Application {
 	public:
-		Sandbox() {
+		Sandbox() : Application(false) {
 			pushLayer(new TestLayer());
 		}
 

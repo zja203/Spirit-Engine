@@ -25,7 +25,7 @@ namespace Spirit {
 
 	class Application {
 		public:
-			Application();
+			Application(bool makeWindow);
 			virtual ~Application();
 
 			void Run();
@@ -39,6 +39,8 @@ namespace Spirit {
 
 			static Application& Get() { return *s_Instance; }
 
+			const bool hasWindow() { return m_hasWindow; }
+
 			const AppSpec& getSpecification() const { return m_Specification; }
 		private:
 			AppSpec m_Specification;
@@ -47,6 +49,7 @@ namespace Spirit {
 			std::unique_ptr<Window> m_Window;
 			bool m_Running = true;
 			bool m_Minimized = false;
+			bool m_hasWindow = true;
 			LayerStack m_LayerStack;
 	};
 
